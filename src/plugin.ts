@@ -1,5 +1,5 @@
 import 'source-map-support/register';
-import { Context, Schema, Cache, Logger } from 'koishi';
+import { Context, Schema, Cache, Logger, isNullable } from 'koishi';
 import {
   MemcachedCachePluginConfig,
   MemcachedCachePluginConfigLike,
@@ -92,7 +92,7 @@ export class MemcachedCache extends Cache {
         return;
       }
       const decodedValue = await this.decode(value);
-      this.logger.info(`${actualKey} => ${JSON.stringify(decodedValue)}`);
+      // this.logger.info(`${actualKey} => ${JSON.stringify(decodedValue)}`);
       return decodedValue;
     } catch (e) {
       this.logger.error(`Get key of ${actualKey} errored: ${e.toString()}`);
@@ -109,22 +109,32 @@ export class MemcachedCache extends Cache {
     if (!this.table(table)) {
       return;
     }
+    if (isNullable(value)) {
+      return this.del(table, key);
+    }
     const actualKey = await this.getKey(table, key);
     const age = maxAge || this.getAgeOfTable(table);
     try {
-      let result: boolean;
-      if (value == null) {
-        result = await this.mem.delete(actualKey);
-      } else {
-        result = await this.mem.set(actualKey, await this.encode(value), {
-          expires: age,
-        });
-      }
+      const result = await this.mem.set(actualKey, await this.encode(value), {
+        expires: age,
+      });
       if (!result) {
-        this.logger.error(`Set key of ${actualKey} failed.`);
+        this.logger.warn(`Set key of ${actualKey} failed.`);
       }
     } catch (e) {
       this.logger.error(`Set key of ${actualKey} errored: ${e.toString()}`);
+    }
+  }
+
+  async del(table: keyof Cache.Tables, key: string) {
+    const actualKey = await this.getKey(table, key);
+    try {
+      const result = await this.mem.delete(actualKey);
+      if (!result) {
+        this.logger.warn(`Delete key ${actualKey} failed.`);
+      }
+    } catch (e) {
+      this.logger.error(`Delete key ${actualKey} errored: ${e.toString()}`);
     }
   }
 
