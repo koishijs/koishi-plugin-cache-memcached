@@ -4,13 +4,14 @@ import {
   MemcachedCachePluginConfig,
   MemcachedCachePluginConfigLike,
 } from './config';
-import { schemaFromClass, schemaTransform } from 'koishi-utils-schemagen';
 import { Client } from 'memjs';
 import { Moment } from 'moment';
 import moment from 'moment';
 import * as EncodeBuffer from 'encoded-buffer';
 
 export class MemcachedCache extends Cache {
+  protected start(): void | Promise<void> {}
+  protected stop(): void | Promise<void> {}
   private logger = new Logger('memcached');
   private mem: Client;
   constructor(ctx: Context, private config: MemcachedCachePluginConfig) {
@@ -148,12 +149,10 @@ export class MemcachedCachePlugin {
   private config: MemcachedCachePluginConfig;
   private ctx: Context;
   name = 'memcached-main';
-  schema: Schema<MemcachedCachePluginConfigLike> = schemaFromClass(
-    MemcachedCachePluginConfig,
-  );
-  apply(ctx: Context, config: MemcachedCachePluginConfigLike) {
+  schema = MemcachedCachePluginConfig;
+  apply(ctx: Context, config: MemcachedCachePluginConfig) {
     this.ctx = ctx;
-    this.config = schemaTransform(MemcachedCachePluginConfig, config);
+    this.config = config;
     ctx.cache = new MemcachedCache(ctx, this.config);
   }
 }

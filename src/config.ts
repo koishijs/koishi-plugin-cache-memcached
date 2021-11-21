@@ -1,7 +1,8 @@
 import 'source-map-support/register';
-import { DefineSchema } from 'koishi-utils-schemagen';
 import { ClientOptions } from 'memjs';
+import { RegisterSchema, DefineSchema } from 'schemastery-gen';
 
+@RegisterSchema()
 export class MemcachedCachePluginConfig {
   @DefineSchema({ desc: 'Memcached 服务器地址', default: 'localhost:11211' })
   endpoint: string;
