@@ -6,7 +6,7 @@ export * from './config';
 export * from './plugin';
 
 export const name = 'memcached';
-export const schema = MemcachedCache.schema;
+export const Config = MemcachedCache.schema;
 export function apply(ctx: Context, config: MemcachedCachePluginConfig) {
   ctx.plugin(MemcachedCache, config);
 }
