@@ -4,17 +4,16 @@ import { RegisterSchema, DefineSchema } from 'schemastery-gen';
 
 @RegisterSchema()
 export class MemcachedCachePluginConfig {
-  @DefineSchema({ desc: 'Memcached 服务器地址', default: 'localhost:11211' })
+  @DefineSchema({ description: 'Memcached 服务器地址', default: 'localhost:11211' })
   endpoint: string;
 
   @DefineSchema({
-    desc: 'Memcached 服务器选项',
+    description: 'Memcached 服务器选项',
     type: 'object',
-    allowUnknown: true,
   })
   memcachedClientOptions: ClientOptions;
 
-  @DefineSchema({ desc: '存储键前缀', default: 'koishi:' })
+  @DefineSchema({ description: '存储键前缀', default: 'koishi:' })
   prefix: string;
 }
 

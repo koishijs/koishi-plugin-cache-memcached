@@ -9,7 +9,9 @@ import { Moment } from 'moment';
 import moment from 'moment';
 import * as EncodeBuffer from 'encoded-buffer';
 
-export class MemcachedCache extends Cache {
+export default class MemcachedCache extends Cache {
+  static schema = MemcachedCachePluginConfig;
+  
   protected start(): void | Promise<void> {}
   protected stop(): void | Promise<void> {}
   private logger = new Logger('memcached');
@@ -142,17 +144,5 @@ export class MemcachedCache extends Cache {
   async clear(table: keyof Cache.Tables) {
     await this.resetVersion(table);
     return;
-  }
-}
-
-export class MemcachedCachePlugin {
-  private config: MemcachedCachePluginConfig;
-  private ctx: Context;
-  name = 'memcached-main';
-  schema = MemcachedCachePluginConfig;
-  apply(ctx: Context, config: MemcachedCachePluginConfig) {
-    this.ctx = ctx;
-    this.config = config;
-    ctx.cache = new MemcachedCache(ctx, this.config);
   }
 }
