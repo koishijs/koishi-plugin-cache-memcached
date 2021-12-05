@@ -11,7 +11,7 @@ import * as EncodeBuffer from 'encoded-buffer';
 
 export default class MemcachedCache extends Cache {
   static schema = MemcachedCachePluginConfig;
-  
+
   protected start(): void | Promise<void> {}
   protected stop(): void | Promise<void> {}
   private logger = new Logger('memcached');

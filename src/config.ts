@@ -4,7 +4,11 @@ import { RegisterSchema, DefineSchema } from 'schemastery-gen';
 
 @RegisterSchema()
 export class MemcachedCachePluginConfig {
-  @DefineSchema({ description: 'Memcached 服务器地址', default: 'localhost:11211' })
+  constructor(config: Partial<MemcachedCachePluginConfig>) {}
+  @DefineSchema({
+    description: 'Memcached 服务器地址',
+    default: 'localhost:11211',
+  })
   endpoint: string;
 
   @DefineSchema({
@@ -17,4 +21,5 @@ export class MemcachedCachePluginConfig {
   prefix: string;
 }
 
-export type MemcachedCachePluginConfigLike = Partial<MemcachedCachePluginConfig>;
+export type MemcachedCachePluginConfigLike =
+  Partial<MemcachedCachePluginConfig>;
