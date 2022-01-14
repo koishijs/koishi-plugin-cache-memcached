@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-cache-memcached",
-  "version": "7.2.0",
+  "version": "7.3.0",
   "description": "Memcached cache support for Koishi.js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
