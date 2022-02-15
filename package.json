@@ -54,6 +54,6 @@
     "ws": "^8.3.0"
   },
   "peerDependencies": {
-    "koishi": "^4.2.0"
+    "koishi": "^4.2.1"
   }
 }
