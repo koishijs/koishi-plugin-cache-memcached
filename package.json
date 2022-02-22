@@ -3,7 +3,7 @@
   "version": "8.2.3",
   "description": "Memcached cache support for Koishi.js",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
     "lint": "eslint --fix .",
     "build": "webpack && env PACK_ALL=1 webpack",
