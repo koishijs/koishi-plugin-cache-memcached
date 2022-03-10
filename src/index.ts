@@ -1,8 +1,6 @@
 import 'source-map-support/register';
 import { Context, Cache, Logger, isNullable } from 'koishi';
-import {
-  MemcachedCachePluginConfig,
-} from './config';
+import { MemcachedCachePluginConfig } from './config';
 import { Client } from 'memjs';
 import { Moment } from 'moment';
 import moment from 'moment';
