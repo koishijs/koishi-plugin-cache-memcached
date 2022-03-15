@@ -1,4 +1,4 @@
-import 'source-map-support/register';
+// import 'source-map-support/register';
 import { ClientOptions } from 'memjs';
 import { RegisterSchema, DefineSchema } from 'schemastery-gen';
 
