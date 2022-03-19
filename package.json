@@ -63,7 +63,7 @@
     "ws": "^8.3.0"
   },
   "peerDependencies": {
-    "koishi": "^4.4.1"
+    "koishi": "^4.4.2"
   },
   "jest": {
     "moduleFileExtensions": [
