@@ -40,9 +40,9 @@
   },
   "devDependencies": {
     "@koishijs/plugin-cache-lru": "^1.0.0-rc.0",
-    "@koishijs/plugin-console": "^3.2.4",
-    "@koishijs/plugin-database-memory": "^1.2.0",
-    "@koishijs/plugin-sandbox": "^1.1.0",
+    "@koishijs/plugin-console": "^3.3.2",
+    "@koishijs/plugin-database-memory": "^1.3.0",
+    "@koishijs/plugin-sandbox": "^1.1.3",
     "@types/jest": "^27.4.0",
     "@types/moment": "^2.13.0",
     "@types/node": "^16.11.1",
