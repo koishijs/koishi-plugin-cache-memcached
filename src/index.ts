@@ -8,7 +8,7 @@ import * as EncodeBuffer from 'encoded-buffer';
 export * from './config';
 
 export default class MemcachedCache extends Cache {
-  static schema = MemcachedCachePluginConfig;
+  static schema = MemcachedCachePluginConfig as any;
 
   protected start(): void | Promise<void> {}
   protected stop(): void | Promise<void> {}
